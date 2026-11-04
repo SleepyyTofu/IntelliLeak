@@ -1,3 +1,6 @@
 # Static Files
 
-This directory contains the static assets used by the IntelliLeak web application.
+This directory stores static assets and uploaded documents
+processed by the IntelliLeak Flask application.
+
+User-uploaded documents are excluded from this public repository.
