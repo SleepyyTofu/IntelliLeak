@@ -1,0 +1,46 @@
+{
+    "manifest_version": 3,
+
+    "name": "IntelliLeak",
+
+    "version": "1.0",
+
+    "description": "Detect sensitive information before sending prompts to AI systems.",
+
+    "permissions": [
+        "activeTab",
+        "storage",
+        "scripting"
+    ],
+
+    "host_permissions": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*",
+        "http://127.0.0.1:5000/*"
+    ],
+
+    "action": {
+        "default_popup": "popup.html"
+    },
+
+    "background": {
+        "service_worker": "background.js"
+    },
+
+    "content_scripts": [
+        {
+            "matches": [
+                "https://chatgpt.com/*",
+                "https://chat.openai.com/*",
+                "https://gemini.google.com/*"
+            ],
+            "js": [
+                "platform.js",
+                "api.js",
+                "warning.js",
+                "content.js"
+            ]
+        }
+    ]
+}
