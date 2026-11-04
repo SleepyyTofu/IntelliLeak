@@ -1,0 +1,81 @@
+CONFIDENTIAL
+IntelliLeak Solutions Sdn. Bhd.
+
+Research and Development Division
+
+Research Proposal
+
+Project Title:
+IntelliLeak: Hybrid Data Leakage Detection and Attribution System
+
+Document Classification:
+CONFIDENTIAL
+
+Project Code:
+RND-2026-017
+
+Prepared By:
+Nurul Afiqah
+Senior Security Researcher
+Email: nurul.afiqah@intellileak.com
+
+Reviewed By:
+Lim Wei Jian
+Chief Information Security Officer
+Email: lim.weijian@intellileak.com
+
+Contributors:
+Ahmad Bin Ali
+Senior Financial Analyst
+Employee ID: EMP-1024
+Corporate Email: ahmad.ali@intellileak.com
+
+Daniel Tan
+AI Engineer
+Employee ID: EMP-1038
+
+Objective
+
+The objective of this research is to develop a hybrid data leakage detection system capable of identifying sensitive information before it is disclosed to public AI platforms. The proposed solution combines rule-based detection with semantic similarity analysis to identify confidential corporate information and attribute it to its likely source document.
+
+Research Scope
+
+• Detection of Personally Identifiable Information (PII)
+• Detection of authentication credentials
+• Detection of financial information
+• Semantic similarity analysis using Sentence Transformers
+• Metadata-assisted document attribution
+• Browser extension for prompt monitoring
+
+Confidential Resources
+
+Git Repository:
+git.intellileak.local/intellileak-rnd
+
+Development Server:
+10.10.20.15
+
+Database Server:
+10.10.20.25
+
+VPN Gateway:
+vpn.intellileak.local
+
+Internal Test Account
+
+Username:
+ahmad.ali
+
+Password:
+Admin123!
+
+OpenAI API Key:
+sk-test-1234567890abcdefghijklmnopqrstuvwxyz
+
+AWS Access Key ID:
+AKIAIOSFODNN7EXAMPLE
+
+AWS Secret Access Key:
+wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
+This document is strictly confidential and intended only for authorized research personnel.
