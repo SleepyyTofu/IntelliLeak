@@ -218,3 +218,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# IntelliLeak: uploaded user documents
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Additional environment files
+.env.*
+!.env.example
+
+# IDE configuration
+.idea/
+.vscode/
