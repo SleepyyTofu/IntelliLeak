@@ -30,7 +30,10 @@ def analyze_similarity(input_text, metadata=None):
     )
 
     for filename in os.listdir(reference_folder):
-
+  
+        if not filename.lower().endswith(".txt"):
+            continue
+            
         file_path = os.path.join(
             reference_folder,
             filename
