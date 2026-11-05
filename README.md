@@ -1,11 +1,12 @@
 # IntelliLeak
+
 ### AI-Assisted Incident Response for Data Leakage Detection and Attribution Using Metadata and DLP Analysis
 
 IntelliLeak is a prototype hybrid data leakage detection and attribution system developed as part of my Final Year Project.
 
 The project explores how rule-based Data Loss Prevention (DLP), semantic similarity analysis, and document metadata extraction can work together to identify potentially sensitive information and investigate its possible source.
 
-It provides a web-based platform for document and text analysis, alongside a Chrome browser extension that checks prompts before they are submitted to supported AI web interfaces.
+It provides a web-based platform for document and text analysis, alongside a Chrome browser extension that monitors prompts on supported AI web interfaces.
 
 ## Project Overview
 
@@ -22,6 +23,7 @@ IntelliLeak addresses this limitation by combining:
 ## Key Features
 
 ### 1. Document and Text Analysis
+
 - Supports text input and document uploads.
 - Supports TXT, PDF, and DOCX file formats.
 - Detects predefined sensitive information.
@@ -29,22 +31,32 @@ IntelliLeak addresses this limitation by combining:
 - Generates risk scores and severity classifications.
 
 ### 2. Semantic Similarity Analysis
+
 - Uses the `all-MiniLM-L6-v2` Sentence Transformer model.
 - Compares submitted content against synthetic reference documents.
 - Helps identify potentially leaked content even when wording has been modified.
 
 ### 3. Metadata Extraction and Attribution
+
 - Extracts available metadata from supported PDF and DOCX documents.
 - Uses metadata alongside similarity analysis to support source attribution.
 - Ranks potential reference documents based on similarity results.
 
 ### 4. Browser Extension
+
 - Built using Chrome Manifest V3.
-- Monitors prompt input on supported AI web interfaces, including ChatGPT and Gemini.
-- Analyses prompt content before submission.
+- Monitors prompt input on supported AI web interfaces, including ChatGPT and Google Gemini.
+- Communicates with the local Flask backend to analyse prompt content.
 - Displays warnings when potentially sensitive information is detected.
 
+**Limitations:**
+- Monitoring is limited to supported AI web interfaces.
+- The Flask backend must be running for prompt analysis functionality.
+- The extension focuses on prompt monitoring and does not support document uploads or document metadata extraction.
+- The warning mechanism does not guarantee that every sensitive prompt will be prevented from being submitted.
+
 ### 5. Risk Assessment
+
 - Applies a weighted risk-scoring mechanism.
 - Classifies findings into severity levels: SAFE, LOW, MEDIUM, HIGH, and CRITICAL.
 
@@ -85,6 +97,9 @@ IntelliLeak consists of two main components:
 
 ```text
 IntelliLeak/
+│
+├── database/              # MySQL database schema
+│   └── schema.sql
 │
 ├── extension/             # Chrome browser extension
 │
@@ -142,15 +157,20 @@ pip install -r requirements.txt
 
 ### 4. Configure the Database
 
-Ensure MySQL Server is running and create the database:
+IntelliLeak uses MySQL to store analysis records.
 
-```sql
-CREATE DATABASE fyp_leakage_system;
-```
+1. Install and start MySQL Server.
+2. Open MySQL Workbench or phpMyAdmin.
+3. Open `database/schema.sql` and execute its SQL statements to create the database and `analysis_logs` table.
+4. Ensure that the database connection settings in `models/database.py` match your local MySQL configuration.
 
-Review `models/database.py` and configure the database connection using your local MySQL credentials before running the application.
+**Database name:** `fyp_leakage_system`
 
-Do not publish database passwords or other credentials in this repository. The current database configuration is intended for local development and should be secured before any production deployment.
+**Table name:** `analysis_logs`
+
+The database stores submitted text, uploaded filenames, detection findings, risk scores, risk classifications, and analysis timestamps.
+
+**Note:** The current database connection settings are configured for local development. Users may need to update the connection details in `models/database.py` to match their MySQL configuration. Do not publish database passwords or other credentials in this repository.
 
 ### 5. Run the Application
 
@@ -175,9 +195,10 @@ http://127.0.0.1:5000
 
 ## Reference Dataset
 
-The project uses synthetic reference documents to evaluate semantic similarity and source attribution under controlled conditions.
+The project uses synthetic reference documents to support semantic similarity analysis and source attribution under controlled conditions.
 
 The dataset includes examples of:
+
 - Financial reports
 - Employee records and handbooks
 - HR policies
@@ -208,9 +229,10 @@ These metrics support comparison between rule-based detection and the hybrid det
 
 ## Limitations
 
-IntelliLeak is an academic prototype and has several limitations:
+IntelliLeak is an academic prototype and has several limitations.
 
 ### Detection and Analysis
+
 - Detection focuses on textual information rather than images, audio, or other non-textual content.
 - Browser monitoring is limited to supported AI web interfaces.
 - The browser extension focuses on prompt monitoring and does not provide document upload or metadata extraction.
@@ -218,6 +240,7 @@ IntelliLeak is an academic prototype and has several limitations:
 - Source attribution provides potential matches rather than definitive forensic proof.
 
 ### Database
+
 - Requires a locally configured MySQL database to support analysis logging.
 - Database connectivity depends on the availability and correct configuration of the local MySQL server.
 - Analysis records may not be saved when database connectivity fails.
@@ -225,6 +248,7 @@ IntelliLeak is an academic prototype and has several limitations:
 - The prototype does not implement enterprise-level database management capabilities such as advanced access control, automated backups, or high availability.
 
 ### Deployment
+
 - The system is designed as an academic prototype rather than a production-ready deployment.
 - It is not intended to replace enterprise-grade DLP or digital forensic solutions.
 
@@ -240,4 +264,4 @@ It is a prototype and should not be considered a production-ready enterprise sec
 
 Dual Degree Computer Science Graduate, specialising in Cybersecurity
 
-Developed as part of my Final Year Project.
+Developed as my Final Year Project.
